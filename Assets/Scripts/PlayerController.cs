@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     //Componentes
     public CharacterController playerController;
+    public Animator anim;
 
     //Variáveis de movimento
     public float speed;
@@ -14,10 +15,12 @@ public class PlayerController : MonoBehaviour
     private float inputX;
     private float inputZ;
     private Vector3 direction;
+    
     // O Start  é chamado antes do primeiro frame
     void Start()
     {
-
+        playerController = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
 
     // Update é chamado a cada frame
@@ -28,13 +31,35 @@ public class PlayerController : MonoBehaviour
 
         direction = new Vector3(inputX, 0, inputZ);
 
-        if (Input.GetButtonDown("Jump"))
+        if(playerController.isGrounded)//O player está no chão?
         {
-            direction.y += jumpForce;
+            anim.SetBool("isJumping", false);//player no chão não está pulando
+            
+            //Correndo
+            if (inputX == 0 && inputZ == 0)//o player está parado?
+            {
+                anim.SetBool("isRunning", false);
+            }
+            else
+            {
+                anim.SetBool("isRunning", true);
+            }
+            //Pulo
+            if (Input.GetButtonDown("Jump"))
+            {
+                direction.y += jumpForce;
+                anim.SetBool("isJumping", true);
+            }
         }
 
-        direction.y -= gravity * Time.deltaTime;
+        //Rotação
+        Vector3 lookDirection = new Vector3(direction.x, 0, direction.z);
+        transform.rotation = Quaternion.LookRotation(lookDirection);
 
+        //Gravidade
+        direction.y -= gravity * Time.deltaTime;
+        
+        //Movimentação
         playerController.Move(direction * speed * Time.deltaTime);
     }
 }
