@@ -34,7 +34,13 @@ public class PlayerController : MonoBehaviour
         if(playerController.isGrounded)//O player está no chão?
         {
             anim.SetBool("isJumping", false);//player no chão não está pulando
-            
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                StartCoroutine(Attack());
+            }
+                
+
             //Correndo
             if (inputX == 0 && inputZ == 0)//o player está parado?
             {
@@ -61,5 +67,14 @@ public class PlayerController : MonoBehaviour
         
         //Movimentação
         playerController.Move(direction * speed * Time.deltaTime);
+    }
+
+    //-----------------------------------------------------------------
+
+    IEnumerator Attack()
+    {
+        anim.SetBool("isKick", true);
+        yield return new WaitForSeconds(1.0f);
+        anim.SetBool("isKick", false);
     }
 }
