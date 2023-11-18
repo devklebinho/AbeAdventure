@@ -8,6 +8,7 @@ public class BasicMotion : MonoBehaviour
     float vertical;
     Vector3 direction;
     [SerializeField] Animator animator;
+    bool canWalk = true;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -19,7 +20,7 @@ public class BasicMotion : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
         direction = new Vector3(horizontal, 0, vertical);
         //Movement
-        if (horizontal != 0 || vertical != 0)
+        if ((horizontal != 0 || vertical != 0) && canWalk == true)
         {
             animator.SetBool("isMoving", true);
             //Rotation
@@ -34,6 +35,7 @@ public class BasicMotion : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("kick");
+            StartCoroutine(Attack());
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -45,8 +47,13 @@ public class BasicMotion : MonoBehaviour
         {
             animator.SetTrigger("jump");
         }
+    }
 
-
+    IEnumerator Attack()
+    {
+        canWalk = false;
+        yield return new WaitForSeconds(1.0f);
+        canWalk = true;
     }
 
 }

@@ -847,7 +847,8 @@ GameObject:
   - component: {fileID: 2987707857050081870}
   - component: {fileID: 9193628752362389556}
   - component: {fileID: 3385793268949220778}
-  - component: {fileID: 3385793268949220783}
+  - component: {fileID: 543450652974240594}
+  - component: {fileID: 543450652974240595}
   m_Layer: 0
   m_Name: Abe
   m_TagString: Untagged
@@ -882,10 +883,10 @@ Animator:
   m_GameObject: {fileID: 2467313833491644660}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: de851b9e26e230c4d964739138b639a4, type: 3}
-  m_Controller: {fileID: 9100000, guid: f88cc5371a223204ba9c05f4f3ed04f0, type: 2}
+  m_Controller: {fileID: 9100000, guid: fd94ccc3e44f74949b037b60e923fadc, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -911,7 +912,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &3385793268949220783
+--- !u!114 &543450652974240594
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -920,14 +921,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 2467313833491644660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 563727ffbdb71b84fb494ca86e20045c, type: 3}
+  m_Script: {fileID: 11500000, guid: 385c5d5791c013044a44ad7cdbc3b1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 3385793268949220778}
-  anim: {fileID: 9193628752362389556}
-  speed: 10
-  gravity: 70
-  jumpForce: 30
+  animator: {fileID: 9193628752362389556}
+--- !u!114 &543450652974240595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2467313833491644660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd58f688e6781a458b1168d77981d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  controller: {fileID: 3385793268949220778}
 --- !u!1 &3117613173258835333
 GameObject:
   m_ObjectHideFlags: 0
