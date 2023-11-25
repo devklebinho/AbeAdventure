@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class FollowTarget : MonoBehaviour
 {
-    public Transform target;
+    public Transform[] target;
     public NavMeshAgent agent;
     void Start()
     {
@@ -14,6 +14,6 @@ public class FollowTarget : MonoBehaviour
 
     void Update()
     {
-        agent.SetDestination(target.position);
+        agent.SetDestination(target[0].position);
     }
 }
