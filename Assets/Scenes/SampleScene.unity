@@ -846,7 +846,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -866,8 +866,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d34ede470ffbcab408ad6485150085bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 442466685}
+  enemyLife: 100
+  target:
+  - {fileID: 442466685}
+  - {fileID: 666888855}
+  - {fileID: 1212603715}
   agent: {fileID: 1024700524}
+  currentTarget: 0
+  pursuitRadius: 0
+  playerReference: {fileID: 0}
 --- !u!1 &1212603714
 GameObject:
   m_ObjectHideFlags: 0
