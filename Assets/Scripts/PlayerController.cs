@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private float inputX;
     private float inputZ;
     private Vector3 direction;
+    public bool canMove;
     
     // O Start  é chamado antes do primeiro frame
     void Start()
@@ -34,22 +35,25 @@ public class PlayerController : MonoBehaviour
         if(playerController.isGrounded)//O player está no chão?
         {
             anim.SetBool("isJumping", false);//player no chão não está pulando
-
+            //Ataque
             if (Input.GetMouseButtonDown(0))
             {
                 StartCoroutine(Attack());
             }
                 
+            if(canMove)
+            {
+                //Correndo
+                if (inputX == 0 && inputZ == 0)//o player está parado?
+                {
+                    anim.SetBool("isRunning", false);
+                }
+                else
+                {
+                    anim.SetBool("isRunning", true);
+                }
+            }
 
-            //Correndo
-            if (inputX == 0 && inputZ == 0)//o player está parado?
-            {
-                anim.SetBool("isRunning", false);
-            }
-            else
-            {
-                anim.SetBool("isRunning", true);
-            }
             //Pulo
             if (Input.GetButtonDown("Jump"))
             {
@@ -76,5 +80,6 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isKick", true);
         yield return new WaitForSeconds(1.0f);
         anim.SetBool("isKick", false);
+       
     }
 }

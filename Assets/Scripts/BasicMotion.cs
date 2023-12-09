@@ -8,10 +8,11 @@ public class BasicMotion : MonoBehaviour
     float vertical;
     Vector3 direction;
     [SerializeField] Animator animator;
-    bool canWalk = true;
+    public bool canWalk;
     void Start()
     {
         animator = GetComponent<Animator>();
+        canWalk = true;
     }
 
     void Update()
@@ -41,15 +42,31 @@ public class BasicMotion : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             animator.SetTrigger("head");
+            StartCoroutine(Head());
         }
 
         if (Input.GetButtonDown("Jump"))
         {
             animator.SetTrigger("jump");
+            StartCoroutine(Jump());
         }
     }
 
+    IEnumerator Jump()
+    {
+        canWalk = false;
+        yield return new WaitForSeconds(1.0f);
+        canWalk = true;
+    }
+
     IEnumerator Attack()
+    {
+        canWalk = false;
+        yield return new WaitForSeconds(1.0f);
+        canWalk = true;
+    }
+
+    IEnumerator Head()
     {
         canWalk = false;
         yield return new WaitForSeconds(1.0f);
