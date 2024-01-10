@@ -31,11 +31,11 @@ public class FollowTarget : MonoBehaviour
             }
             else if(distanceToPlayer <= pursuitRadius)
             {
-                //Pursuit();
+                Pursuit(playerReference);
             }
             else
             {
-                //Patrol();
+                Patrol();
             }
         }
         else

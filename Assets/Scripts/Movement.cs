@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     [SerializeField] float speed;
 
     [SerializeField] CharacterController controller;
-    [SerializeField] BasicMotion basicMotion;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -34,10 +34,8 @@ public class Movement : MonoBehaviour
             direction.y -= 9.8f * Time.deltaTime;
         }
 
-        if (basicMotion.canWalk == true)
-        {
-            controller.Move(direction * speed * Time.deltaTime);
-        }
+        controller.Move(direction * speed * Time.deltaTime);
+
     }
 
 }
